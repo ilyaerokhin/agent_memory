@@ -1,0 +1,17 @@
+#!/bin/sh
+# Trigger agent-memory branch sync on git checkout of a branch.
+# Arguments per git docs: $1=prev_HEAD, $2=new_HEAD, $3=flag (1 == branch checkout).
+if [ "$3" != "1" ]; then
+    exit 0
+fi
+
+if ! command -v agent-memory >/dev/null 2>&1; then
+    exit 0
+fi
+
+project_root="$(git rev-parse --show-toplevel 2>/dev/null)"
+[ -n "$project_root" ] || exit 0
+
+agent-memory sync-branch --project "$project_root" >/dev/null 2>&1 &
+
+exit 0

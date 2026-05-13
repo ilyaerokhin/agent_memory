@@ -1,0 +1,31 @@
+[project]
+name = "agent-memory"
+version = "0.1.0"
+description = "Git-backed long-term memory for coding agents (Cursor, Claude Code)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "agent-memory contributors" }]
+dependencies = [
+    "click>=8.1",
+]
+
+[project.scripts]
+agent-memory = "agent_memory.cli:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/agent_memory"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

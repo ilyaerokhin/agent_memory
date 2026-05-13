@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "command": "agent-memory sync-branch && agent-memory load"
+      }
+    ],
+    "sessionEnd": [
+      {
+        "command": "agent-memory save --transcript-path \"$CURSOR_TRANSCRIPT_PATH\""
+      }
+    ]
+  }
+}
